@@ -1,6 +1,6 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'core/network/connection_info.dart';
 import 'core/utils/input_validator.dart';
@@ -41,10 +41,9 @@ Future<void> init() async {
 
   //! Core
   sl.registerLazySingleton(() => InputValidator());
-  sl.registerLazySingleton(() => NetworkInfo(sl()));
+  sl.registerLazySingleton(() => NetworkInfo());
 
   //! External
   // Something like SharedPreferences would go here too
   sl.registerLazySingleton(() => http.Client());
-  sl.registerLazySingleton(() => DataConnectionChecker());
 }
